@@ -8,7 +8,7 @@ Then this stream is being proccessed according to one of two modes: naive or hll
 Naive mode implementation is done with only using default java `Stream` methods, so it just applies `distinct()` and then `count()` to the stream of data
 
 ## Hll mode
-Hll mode implementation is more sophisticated and it based on [HyperLogLog algorithm](https://en.wikipedia.org/wiki/HyperLogLog) using [java-hll](https://github.com/aggregateknowledge/java-hll) - a java implementation of HyperLogLog algorithm
+Hll mode implementation is more sophisticated and it based on [HyperLogLog algorithm](https://en.wikipedia.org/wiki/HyperLogLog) using [java-hll](https://github.com/aggregateknowledge/java-hll) library - a java implementation of HyperLogLog algorithm
 
 ## How to build
 
