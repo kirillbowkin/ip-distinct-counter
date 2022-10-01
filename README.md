@@ -2,7 +2,7 @@
 Counts unique ip addresses in a given file.
 
 First file is being read with java.nio `Files.lines()` method which returns `Stream<String>` as the result.
-Then this stream is being proccessed according to one of two modes: naive or hll(HyperLogLog)
+Then this stream is being proccessed according to one of two modes: naive or hll (HyperLogLog)
 
 ## Naive mode
 Naive mode implementation is done with only using default java `Stream` methods, so it just applies `distinct()` and then `count()` to the stream of data
@@ -25,7 +25,7 @@ Parameters:
 *  `<path>` - path to a file
 
 Options:
-*  `-m`, `--mode` = `<mode>` - naive(default), hll
+*  `-m`, `--mode` = `<mode>` - naive (default), hll
 *  `-h`, `--help` - Show this help message and exit
 *  `-v`, `--version` - Print version information and exit
 
