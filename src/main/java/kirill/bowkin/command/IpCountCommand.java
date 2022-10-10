@@ -1,13 +1,15 @@
 package kirill.bowkin.command;
 
-import kirill.bowkin.ipCounter.IpCounters;
 import kirill.bowkin.ipCounter.IpCounter;
+import kirill.bowkin.ipCounter.IpCounters;
 import picocli.CommandLine.Parameters;
 
 import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static picocli.CommandLine.*;
 import static picocli.CommandLine.Command;
+import static picocli.CommandLine.Option;
 
 /**
  * @author Кирилл
@@ -15,6 +17,8 @@ import static picocli.CommandLine.Command;
 
 @Command(name = "ipCount", mixinStandardHelpOptions = true, description = "Prints number of unique ip addresses for a given file")
 public class IpCountCommand implements Runnable {
+
+    private static final Logger LOGGER = Logger.getLogger(IpCountCommand.class.getName());
 
     @Parameters(paramLabel = "<path>", description = "Path to the file")
     private Path path;
@@ -25,18 +29,18 @@ public class IpCountCommand implements Runnable {
     @Override
     public void run() {
         IpCounter ipCounter = getIpCounter();
-        System.out.printf("Using %s\n", ipCounter.toString());
+        LOGGER.log(Level.INFO, "Using {0}", ipCounter.toString());
         int ipCount = ipCounter.count(path);
-        System.out.printf("Number of unique ip addresses: %d", ipCount);
+        LOGGER.log(Level.INFO, "Number of unique ip addresses: {0}", ipCount);
     }
 
     private IpCounter getIpCounter() {
         IpCounter ipCounter = IpCounters.naive();
 
-        if("naive".equals(mode)) {
+        if ("naive".equals(mode)) {
             ipCounter = IpCounters.naive();
         }
-        if("hll".equals(mode)) {
+        if ("hll".equals(mode)) {
             ipCounter = IpCounters.hll();
         }
         return ipCounter;
