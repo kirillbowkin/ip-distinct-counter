@@ -19,7 +19,7 @@ public class NaiveIpCounterTest {
     @Before
     public void setUp() throws Exception {
         naiveIpCounter = (NaiveIpCounter) IpCounters.naive();
-        path = Paths.get("ip.txt");
+        path = Paths.get("src/test/resources/ip.txt");
     }
 
     @Test

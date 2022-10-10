@@ -20,7 +20,7 @@ public class HllIpCounterTest {
     @Before
     public void setUp() throws Exception {
         hllIpCounter = (HllIpCounter) IpCounters.hll();
-        path = Paths.get("ip.txt");
+        path = Paths.get("src/test/resources/ip.txt");
     }
 
     @Test
