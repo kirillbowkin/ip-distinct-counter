@@ -37,14 +37,9 @@ public class IpCountCommand implements Runnable {
     }
 
     private IpCounter getIpCounter() {
-        IpCounter ipCounter = IpCounters.naive();
-
-        if (NAIVE.equals(mode)) {
-            ipCounter = IpCounters.naive();
-        }
         if (HLL.equals(mode)) {
-            ipCounter = IpCounters.hll();
+            return IpCounters.hll();
         }
-        return ipCounter;
+        return IpCounters.naive();
     }
 }
