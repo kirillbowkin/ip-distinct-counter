@@ -19,6 +19,8 @@ import static picocli.CommandLine.Option;
 public class IpCountCommand implements Runnable {
 
     private static final Logger LOGGER = Logger.getLogger(IpCountCommand.class.getName());
+    public static final String NAIVE = "naive";
+    public static final String HLL = "hll";
 
     @Parameters(paramLabel = "<path>", description = "Path to the file")
     private Path path;
@@ -37,10 +39,10 @@ public class IpCountCommand implements Runnable {
     private IpCounter getIpCounter() {
         IpCounter ipCounter = IpCounters.naive();
 
-        if ("naive".equals(mode)) {
+        if (NAIVE.equals(mode)) {
             ipCounter = IpCounters.naive();
         }
-        if ("hll".equals(mode)) {
+        if (HLL.equals(mode)) {
             ipCounter = IpCounters.hll();
         }
         return ipCounter;
