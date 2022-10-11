@@ -1,7 +1,9 @@
 package kirill.bowkin.command;
 
+import kirill.bowkin.exception.FileReadException;
 import kirill.bowkin.ipCounter.IpCounter;
 import kirill.bowkin.ipCounter.IpCounters;
+import kirill.bowkin.util.FileReader;
 import picocli.CommandLine.Parameters;
 
 import java.nio.file.Path;
@@ -30,10 +32,14 @@ public class IpCountCommand implements Runnable {
 
     @Override
     public void run() {
-        IpCounter ipCounter = getIpCounter();
-        LOGGER.log(Level.INFO, "Using {0}", ipCounter.toString());
-        int ipCount = ipCounter.count(path);
-        LOGGER.log(Level.INFO, "Number of unique ip addresses: {0}", ipCount);
+        try (var ipStream = FileReader.read(path)){
+            IpCounter ipCounter = getIpCounter();
+            LOGGER.log(Level.INFO, "Using {0}", ipCounter.toString());
+            int ipCount = ipCounter.count(ipStream);
+            LOGGER.log(Level.INFO, "Number of unique ip addresses: {0}", ipCount);
+        } catch (FileReadException e) {
+            LOGGER.log(Level.SEVERE, e.toString());
+        }
     }
 
     private IpCounter getIpCounter() {

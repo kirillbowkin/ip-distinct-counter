@@ -1,10 +1,10 @@
 package kirill.bowkin.ipCounter;
 
-import java.nio.file.Path;
+import java.util.stream.Stream;
 
 /**
  * @author Кирилл
  */
 public interface IpCounter {
-    int count(Path path);
+    int count(Stream<String> s);
 }
