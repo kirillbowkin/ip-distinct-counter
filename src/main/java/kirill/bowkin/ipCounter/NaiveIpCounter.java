@@ -7,7 +7,7 @@ import java.util.stream.Stream;
  */
 public class NaiveIpCounter implements IpCounter {
     @Override
-    public int count(Stream<String> s) {
+    public int countUnique(Stream<String> s) {
         return (int) s.distinct().count();
     }
 

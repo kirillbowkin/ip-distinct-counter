@@ -27,7 +27,7 @@ public class NaiveIpCounterTest {
     @Test
     public void shouldReturn4IfFileExists() throws FileReadException {
         var ipStream = FileReader.read(path);
-        int count = naiveIpCounter.count(ipStream);
+        int count = naiveIpCounter.countUnique(ipStream);
         assertEquals(4, count);
     }
 }

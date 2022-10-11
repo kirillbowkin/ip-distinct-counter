@@ -35,7 +35,7 @@ public class IpCountCommand implements Runnable {
         try (var ipStream = FileReader.read(path)){
             IpCounter ipCounter = getIpCounter();
             LOGGER.log(Level.INFO, "Using {0}", ipCounter.toString());
-            int ipCount = ipCounter.count(ipStream);
+            int ipCount = ipCounter.countUnique(ipStream);
             LOGGER.log(Level.INFO, "Number of unique ip addresses: {0}", ipCount);
         } catch (FileReadException e) {
             LOGGER.log(Level.SEVERE, e.toString());

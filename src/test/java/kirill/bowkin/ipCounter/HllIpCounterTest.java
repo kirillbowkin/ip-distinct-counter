@@ -29,7 +29,7 @@ public class HllIpCounterTest {
     @Test
     public void shouldReturn4IfFileExists() throws FileReadException {
         var ipStream = FileReader.read(path);
-        int count = hllIpCounter.count(ipStream);
+        int count = hllIpCounter.countUnique(ipStream);
         assertEquals(4, count);
     }
 }

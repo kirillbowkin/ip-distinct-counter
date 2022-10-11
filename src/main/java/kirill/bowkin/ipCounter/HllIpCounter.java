@@ -17,7 +17,7 @@ public class HllIpCounter implements IpCounter {
     }
 
     @Override
-    public int count(Stream<String> s) {
+    public int countUnique(Stream<String> s) {
          hllFiller.fill(s);
          return (int) hllFiller.getCardinality();
     }
